@@ -1,9 +1,11 @@
 import std/os
 import std/parseopt
 import std/strutils
+import std/times
 import std/xmltree
 
 let topPriority = 1.0
+var timeStamp = $(now())
 
 proc url(link: string, priorityVal: float): XmlNode =
     var priorityStr = priorityVal.formatFloat(ffDecimal, 2)
@@ -11,7 +13,7 @@ proc url(link: string, priorityVal: float): XmlNode =
     loc.add newText(link)
 
     var lastmod = newElement("lastmod")
-    lastmod.add newText("2022-12-31T11:38:06+00:00")
+    lastmod.add newText(timeStamp)
 
     var priority = newElement("priority")
     priority.add newText(priorityStr)
